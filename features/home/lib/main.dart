@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:home/module.dart';
 
-void main() {
+/* void main() {
   return runApp(ModularApp(
     module: HomeModule(),
     child: const AppWidget(),
@@ -25,4 +25,4 @@ class AppWidget extends StatelessWidget {
       routerConfig: Modular.routerConfig,
     );
   }
-}
+} */
