@@ -1,8 +1,10 @@
 import 'package:cinemak/module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:home/core/di/injector.dart';
 
 void main() {
+  configureDependencies();
   return runApp(ModularApp(
     module: AppModule(),
     child: const AppWidget(),
