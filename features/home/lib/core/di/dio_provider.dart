@@ -11,7 +11,8 @@ abstract class DioProvider {
     // A exaple of adding headers
     dio.options.headers = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer YOUR_TOKEN_HERE',
+      'Authorization':
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZWE3NTlhOTcyNzVjNmY2Yzc3MmQxMWI5NmZiZDc2YSIsIm5iZiI6MTU3NjE3NDk1Ny42NTI5OTk5LCJzdWIiOiI1ZGYyODU2ZDJjZGU5ODAwMTYyZmRhNmQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Ep68QGFXvrGc2TcQEzfK47qB5RXetP7miXJEuDn8uvQ',
     };
     dio.interceptors.add(PrettyDioLogger());
     return dio;
