@@ -22,6 +22,7 @@ import 'package:home/domain/repositories/movie_repository.dart' as _i293;
 import 'package:home/domain/usecases/get_most_popular_movies.dart' as _i895;
 import 'package:home/domain/usecases/get_now_playing_movies.dart' as _i53;
 import 'package:home/presentation/cubit/movies_cubit.dart' as _i1019;
+import 'package:home/presentation/home_cubitt.dart' as _i557;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:internet_connection_checker/internet_connection_checker.dart'
     as _i973;
@@ -39,6 +40,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final internetConnectionProvider = _$InternetConnectionProvider();
     final dioProvider = _$DioProvider();
+    gh.factory<_i557.HomeCubit>(() => _i557.HomeCubit());
     gh.lazySingleton<_i973.InternetConnectionChecker>(
         () => internetConnectionProvider.internetConnectionChecker);
     gh.lazySingleton<_i361.Dio>(() => dioProvider.dio);

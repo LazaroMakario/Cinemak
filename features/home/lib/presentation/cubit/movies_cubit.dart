@@ -19,7 +19,7 @@ class MoviesCubit extends Cubit<MoviesState> {
   ) : super(const MoviesState.initial());
 
   Future<void> getMovies() async {
-    print('getMovies');
+    print('MoviesCubit.getMovies() called');
 
     emit(const MoviesState.loading());
 
