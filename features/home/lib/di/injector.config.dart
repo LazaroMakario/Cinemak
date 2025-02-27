@@ -9,13 +9,13 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
-import 'package:home/core/di/internet_connection_provider.dart' as _i555;
+import 'package:home/data/datasources/remote/api/api_service.dart' as _i31;
 import 'package:home/data/datasources/remote/movie_remote_data_source.dart'
     as _i202;
 import 'package:home/data/datasources/remote/movie_remote_data_source_impl.dart'
     as _i695;
 import 'package:home/data/repositories/movie_repository_impl.dart' as _i1012;
-import 'package:home/data/datasources/remote/api/api_service.dart' as _i494;
+import 'package:home/di/connection_provider.dart' as _i328;
 import 'package:home/di/network_module.dart' as _i857;
 import 'package:home/domain/repositories/movie_repository.dart' as _i293;
 import 'package:home/domain/usecases/get_most_popular_movies.dart' as _i895;
@@ -45,10 +45,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => internetConnectionProvider.internetConnectionChecker);
     gh.lazySingleton<_i371.NetworkClient>(
         () => networkModule.networkClient(gh<_i847.NetworkConfig>()));
-    gh.lazySingleton<_i494.ApiService>(
+    gh.lazySingleton<_i31.ApiService>(
         () => networkModule.apiService(gh<_i371.NetworkClient>()));
     gh.factory<_i202.MovieRemoteDataSource>(
-        () => _i695.MovieRemoteDataSourceImpl(gh<_i494.ApiService>()));
+        () => _i695.MovieRemoteDataSourceImpl(gh<_i31.ApiService>()));
     gh.factory<_i293.MovieRepository>(() => _i1012.MovieRepositoryImpl(
           remoteDataSource: gh<_i202.MovieRemoteDataSource>(),
           connectionChecker: gh<_i973.InternetConnectionChecker>(),
@@ -67,4 +67,4 @@ extension GetItInjectableX on _i174.GetIt {
 
 class _$NetworkModule extends _i857.NetworkModule {}
 
-class _$InternetConnectionProvider extends _i555.InternetConnectionProvider {}
+class _$InternetConnectionProvider extends _i328.InternetConnectionProvider {}

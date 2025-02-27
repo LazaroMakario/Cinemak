@@ -3,7 +3,7 @@ import 'package:home/data/datasources/remote/movie_remote_data_source.dart';
 import 'package:home/domain/models/movie.dart';
 import 'package:injectable/injectable.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import '../../../../core/error/failures.dart';
+import '../../commons/error/failures.dart';
 import '../../domain/repositories/movie_repository.dart';
 
 @Injectable(as: MovieRepository)
