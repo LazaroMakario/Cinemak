@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:home/domain/models/movie.dart';
 import 'package:home/presentation/home/cubit/home_cubit.dart';
 
@@ -156,17 +157,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildCarteleraTitle() {
-    return Text(
-      'Cartelera',
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 20, // Tamaño de fuente ajustado para el título de Cartelera
-        fontWeight: FontWeight.bold,
-      ),
-    );
-  }
-
   Widget _buildMovieListTitle(String title) {
     return Text(
       title,
@@ -204,8 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return GestureDetector(
       onTap: () {
-        // Aquí se podría implementar la navegación a la pantalla de detalle
-        print('Película seleccionada: ${movie.title}');
+        Modular.to.pushNamed('./details', arguments: movie);
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

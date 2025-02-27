@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:home/core/di/injector.dart';
+import 'package:home/presentation/details/view/details_screen.dart';
 import 'package:home/presentation/home/cubit/home_cubit.dart';
 import 'package:home/presentation/home/view/home_screen.dart';
 
@@ -20,5 +21,11 @@ class HomeModule extends Module {
         child: HomeScreen(),
       );
     });
+    r.child(
+      '/details',
+      child: (context) => MovieDetailsScreen(
+        movie: r.args.data,
+      ),
+    );
   }
 }
