@@ -21,8 +21,7 @@ import 'package:home/data/repositories/movie_repository_impl.dart' as _i1012;
 import 'package:home/domain/repositories/movie_repository.dart' as _i293;
 import 'package:home/domain/usecases/get_most_popular_movies.dart' as _i895;
 import 'package:home/domain/usecases/get_now_playing_movies.dart' as _i53;
-import 'package:home/presentation/cubit/movies_cubit.dart' as _i1019;
-import 'package:home/presentation/home_cubitt.dart' as _i557;
+import 'package:home/presentation/home/cubit/home_cubit.dart' as _i634;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:internet_connection_checker/internet_connection_checker.dart'
     as _i973;
@@ -40,7 +39,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final internetConnectionProvider = _$InternetConnectionProvider();
     final dioProvider = _$DioProvider();
-    gh.factory<_i557.HomeCubit>(() => _i557.HomeCubit());
     gh.lazySingleton<_i973.InternetConnectionChecker>(
         () => internetConnectionProvider.internetConnectionChecker);
     gh.lazySingleton<_i361.Dio>(() => dioProvider.dio);
@@ -55,7 +53,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i53.GetNowPlayingMoviesUseCase(gh<_i293.MovieRepository>()));
     gh.factory<_i895.GetMostPopularMoviesUseCase>(
         () => _i895.GetMostPopularMoviesUseCase(gh<_i293.MovieRepository>()));
-    gh.factory<_i1019.MoviesCubit>(() => _i1019.MoviesCubit(
+    gh.factory<_i634.HomeCubit>(() => _i634.HomeCubit(
           gh<_i895.GetMostPopularMoviesUseCase>(),
           gh<_i53.GetNowPlayingMoviesUseCase>(),
         ));
