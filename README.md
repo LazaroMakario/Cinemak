@@ -30,9 +30,9 @@ graph TD
 
     subgraph Domain Layer
         UseCase[Use Cases]
-        Entity[Entities]
+        Models[Models]
         Repository[Repository Interface]
-        UseCase --> Entity
+        UseCase --> Models
         UseCase --> Repository
     end
 
@@ -42,7 +42,7 @@ graph TD
         Models[Data Models]
         RepositoryImpl --> DataSource
         DataSource --> Models
-        Models --> Entity
+        Models --> Models
     end
 
     subgraph Core Packages
@@ -67,7 +67,7 @@ graph TD
 
 2. **Domain**
    - Contains business logic
-   - Defines entities and use cases
+   - Defines Models and use cases
    - Repository interfaces
 
 3. **Data**
