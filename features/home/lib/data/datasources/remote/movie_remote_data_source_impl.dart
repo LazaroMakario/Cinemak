@@ -7,7 +7,6 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: MovieRemoteDataSource)
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
-  //final MovieService _apiClient;
   final ApiService _apiClient;
 
   MovieRemoteDataSourceImpl(this._apiClient);

@@ -1,4 +1,4 @@
-import 'package:cinemak/presentation/onboarding/onboarding.dart';
+import 'package:cinemak/presentation/onboarding/onboarding_screen.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:home/module.dart';
 
