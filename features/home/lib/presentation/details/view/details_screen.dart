@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home/domain/models/movie.dart';
+import 'package:design_system/design_system.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
   final Movie movie;
@@ -15,27 +16,44 @@ class MovieDetailsScreen extends StatelessWidget {
         : 'https://via.placeholder.com/120x180?text=No+Image';
 
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: Stack(
         children: [
           // 1. Imagen de fondo
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                  imageUrl,
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(imageUrl),
+                  fit: BoxFit.cover,
                 ),
-                fit: BoxFit.cover,
               ),
-            ),
-            foregroundDecoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.6), // Overlay oscuro
             ),
           ),
 
-          // 2. Contenido principal superpuesto
+          // 2. Gradiente superpuesto
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    AppColors.background.withValues(alpha: 0.5),
+                    AppColors.background.withValues(alpha: 1),
+                    AppColors.background.withValues(alpha: 1),
+                  ],
+                  stops: const [0.0, 0.3, 0.7, 1.0],
+                ),
+              ),
+            ),
+          ),
+
+          // 3. Contenido principal superpuesto
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: AppSpacing.paddingLG,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -49,27 +67,24 @@ class MovieDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _buildRatingCircle(45), // Círculo de rating (ejemplo 45%)
-                      const SizedBox(width: 20),
+                      AppSpacing.horizontalSpacerMD,
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               movie.title,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white.withOpacity(0.9),
+                              style: AppTypography.headline3.copyWith(
+                                color: AppColors.textPrimary,
                               ),
                             ),
-                            const SizedBox(height: 8),
+                            AppSpacing.verticalSpacerXS,
                             Row(
                               children: [
                                 Text(
                                   movie.releaseDate,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.white.withOpacity(0.7),
+                                  style: AppTypography.body2.copyWith(
+                                    color: AppColors.textSecondary,
                                   ),
                                 ),
                               ],
@@ -79,21 +94,27 @@ class MovieDetailsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 30),
+                  AppSpacing.verticalSpacerXL,
 
                   // Descripción de la película
                   Text(
                     movie.overview,
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.white.withOpacity(0.8),
-                      height:
-                          1.4, // Espacio entre líneas para mejor legibilidad
+                    style: AppTypography.body1.copyWith(
+                      color: AppColors.textSecondary,
+                      height: 1.4,
                     ),
                   ),
                   const Spacer(), // Empuja el botón hacia la parte inferior
-                  // Botón "Assitir Trailer"
-                  _buildTrailerButton(context),
+
+                  // Botón "Ver Trailer"
+                  PrimaryButton(
+                    text: 'Ver trailer',
+                    isFullWidth: true,
+                    icon: Icons.play_arrow,
+                    onPressed: () {
+                      // Acción para ver el trailer
+                    },
+                  ),
                 ],
               ),
             ),
@@ -111,15 +132,15 @@ class MovieDetailsScreen extends StatelessWidget {
       children: [
         IconButton(
           icon: const Icon(Icons.arrow_back),
-          color: Colors.white,
+          color: AppColors.textPrimary,
           iconSize: 30,
           onPressed: () {
-            Navigator.of(context).pop(); // Simulación de "Volver"
+            Navigator.of(context).pop();
           },
         ),
         IconButton(
           icon: const Icon(Icons.favorite_border),
-          color: Colors.white,
+          color: AppColors.textPrimary,
           iconSize: 30,
           onPressed: () {
             // Acción para añadir a favoritos
@@ -140,45 +161,17 @@ class MovieDetailsScreen extends StatelessWidget {
             value: percentage / 100, // Valor del progreso (0.0 - 1.0)
             strokeWidth: 6,
             backgroundColor: Colors.grey.shade800,
-            color: const Color(0xFFEC407A), // Color rosado del rating
+            color: AppColors.secondary, // Color principal para rating
           ),
         ),
         Text(
           '$percentage%',
-          style: const TextStyle(
-            fontSize: 18,
+          style: AppTypography.subtitle1.copyWith(
+            color: AppColors.textPrimary,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildTrailerButton(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton.icon(
-        onPressed: () {
-          // Acción para ver el trailer
-        },
-        icon: const Icon(Icons.play_arrow, color: Colors.white),
-        label: const Text(
-          'Ver trailer',
-          style: TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.w600,
-            color: Colors.white,
-          ),
-        ),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30), // Bordes redondeados
-          ),
-        ),
-      ),
     );
   }
 }
