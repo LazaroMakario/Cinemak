@@ -40,6 +40,9 @@ dependencies:
   # Network module
   network:
     path: ../../packages/network
+  
+  injection:
+    path: ../../packages/injection
 
 dev_dependencies:
   flutter_test:
