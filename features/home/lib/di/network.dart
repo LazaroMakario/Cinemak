@@ -1,4 +1,4 @@
-import 'package:get_it/get_it.dart';
+import 'package:home/di/api_service.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';
 import 'package:network/dio_network_config.dart';
@@ -9,8 +9,8 @@ import 'package:network/network_config.dart';
 abstract class NetworkModule {
   @lazySingleton
   NetworkConfig get config => DioNetworkConfig(
-        baseUrl: 'https://api.example.com',
-        interceptors: [LogInterceptor()], // Ejemplo de interceptor
+        baseUrl: 'https://api.themoviedb.org/3/',
+        interceptors: [LogInterceptor()],
       );
 
   @lazySingleton

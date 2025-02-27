@@ -3,13 +3,11 @@ import 'package:home/data/models/movies_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
-part 'api_client.g.dart';
+part 'api_service.g.dart';
 
-@RestApi(baseUrl: "https://api.themoviedb.org/3/")
-@singleton
-abstract class MovieService {
-  @factoryMethod
-  factory MovieService(Dio dio) = _MovieService;
+@RestApi()
+abstract class ApiService {
+  factory ApiService(Dio dio) = _ApiService;
 
   @GET(
       "discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc")

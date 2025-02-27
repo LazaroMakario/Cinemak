@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'api_client.dart';
+part of 'api_service.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,14 +8,12 @@ part of 'api_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
 
-class _MovieService implements MovieService {
-  _MovieService(
+class _ApiService implements ApiService {
+  _ApiService(
     this._dio, {
     this.baseUrl,
     this.errorLogger,
-  }) {
-    baseUrl ??= 'https://api.themoviedb.org/3/';
-  }
+  });
 
   final Dio _dio;
 
