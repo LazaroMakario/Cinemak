@@ -23,18 +23,18 @@ class MoviesCubit extends Cubit<MoviesState> {
 
     emit(const MoviesState.loading());
 
-    final upcomingResult = await _getMostPopularMovies();
-    final topRatedResult = await _getNowPlayingMovies();
+    final popularMoviesResult = await _getMostPopularMovies();
+    final nowPlayingResult = await _getNowPlayingMovies();
 
-    upcomingResult.fold(
+    popularMoviesResult.fold(
       (failure) => emit(MoviesState.error(failure.toString())),
-      (upcomingMovies) {
-        topRatedResult.fold(
+      (mostPopularMovies) {
+        nowPlayingResult.fold(
           (failure) => emit(MoviesState.error(failure.toString())),
-          (topRatedMovies) => emit(
+          (nowPlayingMovies) => emit(
             MoviesState.loaded(
-              upcomingMovies: upcomingMovies,
-              topRatedMovies: topRatedMovies,
+              mostPopularMovies: mostPopularMovies,
+              nowPlayingMovies: nowPlayingMovies,
             ),
           ),
         );

@@ -21,7 +21,7 @@ mixin _$MoviesState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<Movie> upcomingMovies, List<Movie> topRatedMovies)
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)
         loaded,
     required TResult Function(String message) error,
   }) =>
@@ -30,7 +30,8 @@ mixin _$MoviesState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Movie> upcomingMovies, List<Movie> topRatedMovies)?
+    TResult? Function(
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)?
         loaded,
     TResult? Function(String message)? error,
   }) =>
@@ -39,7 +40,8 @@ mixin _$MoviesState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Movie> upcomingMovies, List<Movie> topRatedMovies)?
+    TResult Function(
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -137,7 +139,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<Movie> upcomingMovies, List<Movie> topRatedMovies)
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -149,7 +151,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Movie> upcomingMovies, List<Movie> topRatedMovies)?
+    TResult? Function(
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -161,7 +164,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Movie> upcomingMovies, List<Movie> topRatedMovies)?
+    TResult Function(
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -258,7 +262,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<Movie> upcomingMovies, List<Movie> topRatedMovies)
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -270,7 +274,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Movie> upcomingMovies, List<Movie> topRatedMovies)?
+    TResult? Function(
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -282,7 +287,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Movie> upcomingMovies, List<Movie> topRatedMovies)?
+    TResult Function(
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -341,7 +347,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Movie> upcomingMovies, List<Movie> topRatedMovies});
+  $Res call({List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies});
 }
 
 /// @nodoc
@@ -357,17 +363,17 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? upcomingMovies = null,
-    Object? topRatedMovies = null,
+    Object? mostPopularMovies = null,
+    Object? nowPlayingMovies = null,
   }) {
     return _then(_$LoadedImpl(
-      upcomingMovies: null == upcomingMovies
-          ? _value._upcomingMovies
-          : upcomingMovies // ignore: cast_nullable_to_non_nullable
+      mostPopularMovies: null == mostPopularMovies
+          ? _value._mostPopularMovies
+          : mostPopularMovies // ignore: cast_nullable_to_non_nullable
               as List<Movie>,
-      topRatedMovies: null == topRatedMovies
-          ? _value._topRatedMovies
-          : topRatedMovies // ignore: cast_nullable_to_non_nullable
+      nowPlayingMovies: null == nowPlayingMovies
+          ? _value._nowPlayingMovies
+          : nowPlayingMovies // ignore: cast_nullable_to_non_nullable
               as List<Movie>,
     ));
   }
@@ -377,30 +383,32 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(
-      {required final List<Movie> upcomingMovies,
-      required final List<Movie> topRatedMovies})
-      : _upcomingMovies = upcomingMovies,
-        _topRatedMovies = topRatedMovies;
+      {required final List<Movie> mostPopularMovies,
+      required final List<Movie> nowPlayingMovies})
+      : _mostPopularMovies = mostPopularMovies,
+        _nowPlayingMovies = nowPlayingMovies;
 
-  final List<Movie> _upcomingMovies;
+  final List<Movie> _mostPopularMovies;
   @override
-  List<Movie> get upcomingMovies {
-    if (_upcomingMovies is EqualUnmodifiableListView) return _upcomingMovies;
+  List<Movie> get mostPopularMovies {
+    if (_mostPopularMovies is EqualUnmodifiableListView)
+      return _mostPopularMovies;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_upcomingMovies);
+    return EqualUnmodifiableListView(_mostPopularMovies);
   }
 
-  final List<Movie> _topRatedMovies;
+  final List<Movie> _nowPlayingMovies;
   @override
-  List<Movie> get topRatedMovies {
-    if (_topRatedMovies is EqualUnmodifiableListView) return _topRatedMovies;
+  List<Movie> get nowPlayingMovies {
+    if (_nowPlayingMovies is EqualUnmodifiableListView)
+      return _nowPlayingMovies;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_topRatedMovies);
+    return EqualUnmodifiableListView(_nowPlayingMovies);
   }
 
   @override
   String toString() {
-    return 'MoviesState.loaded(upcomingMovies: $upcomingMovies, topRatedMovies: $topRatedMovies)';
+    return 'MoviesState.loaded(mostPopularMovies: $mostPopularMovies, nowPlayingMovies: $nowPlayingMovies)';
   }
 
   @override
@@ -409,16 +417,16 @@ class _$LoadedImpl implements _Loaded {
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
             const DeepCollectionEquality()
-                .equals(other._upcomingMovies, _upcomingMovies) &&
+                .equals(other._mostPopularMovies, _mostPopularMovies) &&
             const DeepCollectionEquality()
-                .equals(other._topRatedMovies, _topRatedMovies));
+                .equals(other._nowPlayingMovies, _nowPlayingMovies));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_upcomingMovies),
-      const DeepCollectionEquality().hash(_topRatedMovies));
+      const DeepCollectionEquality().hash(_mostPopularMovies),
+      const DeepCollectionEquality().hash(_nowPlayingMovies));
 
   /// Create a copy of MoviesState
   /// with the given fields replaced by the non-null parameter values.
@@ -434,11 +442,11 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<Movie> upcomingMovies, List<Movie> topRatedMovies)
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)
         loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(upcomingMovies, topRatedMovies);
+    return loaded(mostPopularMovies, nowPlayingMovies);
   }
 
   @override
@@ -446,11 +454,12 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Movie> upcomingMovies, List<Movie> topRatedMovies)?
+    TResult? Function(
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)?
         loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(upcomingMovies, topRatedMovies);
+    return loaded?.call(mostPopularMovies, nowPlayingMovies);
   }
 
   @override
@@ -458,13 +467,14 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Movie> upcomingMovies, List<Movie> topRatedMovies)?
+    TResult Function(
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(upcomingMovies, topRatedMovies);
+      return loaded(mostPopularMovies, nowPlayingMovies);
     }
     return orElse();
   }
@@ -509,11 +519,11 @@ class _$LoadedImpl implements _Loaded {
 
 abstract class _Loaded implements MoviesState {
   const factory _Loaded(
-      {required final List<Movie> upcomingMovies,
-      required final List<Movie> topRatedMovies}) = _$LoadedImpl;
+      {required final List<Movie> mostPopularMovies,
+      required final List<Movie> nowPlayingMovies}) = _$LoadedImpl;
 
-  List<Movie> get upcomingMovies;
-  List<Movie> get topRatedMovies;
+  List<Movie> get mostPopularMovies;
+  List<Movie> get nowPlayingMovies;
 
   /// Create a copy of MoviesState
   /// with the given fields replaced by the non-null parameter values.
@@ -593,7 +603,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<Movie> upcomingMovies, List<Movie> topRatedMovies)
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -605,7 +615,8 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Movie> upcomingMovies, List<Movie> topRatedMovies)?
+    TResult? Function(
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -617,7 +628,8 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Movie> upcomingMovies, List<Movie> topRatedMovies)?
+    TResult Function(
+            List<Movie> mostPopularMovies, List<Movie> nowPlayingMovies)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),

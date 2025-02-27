@@ -5,8 +5,8 @@ class MoviesState with _$MoviesState {
   const factory MoviesState.initial() = _Initial;
   const factory MoviesState.loading() = _Loading;
   const factory MoviesState.loaded({
-    required List<Movie> upcomingMovies,
-    required List<Movie> topRatedMovies,
+    required List<Movie> mostPopularMovies,
+    required List<Movie> nowPlayingMovies,
   }) = _Loaded;
   const factory MoviesState.error(String message) = _Error;
 }
