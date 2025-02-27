@@ -11,10 +11,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # Dependency Injection
-  get_it: ^7.6.6
-  injectable: ^2.3.2
-
   # Network
   dio: ^5.4.0
   retrofit: ^4.0.3
@@ -27,9 +23,7 @@ dev_dependencies:
 
   # Code Generation
   build_runner: ^2.4.7
-  injectable_generator: ^2.4.1
-  retrofit_generator: ^8.0.6
-
+  
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

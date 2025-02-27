@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:home/data/models/movies_response.dart';
-import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_service.g.dart';

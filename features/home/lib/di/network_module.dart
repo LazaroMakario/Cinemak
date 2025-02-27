@@ -1,4 +1,5 @@
 import 'package:home/di/api_service.dart';
+import 'package:home/di/header_interceptor.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';
 import 'package:network/dio_network_config.dart';
@@ -10,7 +11,10 @@ abstract class NetworkModule {
   @lazySingleton
   NetworkConfig get config => DioNetworkConfig(
         baseUrl: 'https://api.themoviedb.org/3/',
-        interceptors: [LogInterceptor()],
+        interceptors: [
+          LogInterceptor(),
+          HeaderInterceptor(),
+        ],
       );
 
   @lazySingleton
