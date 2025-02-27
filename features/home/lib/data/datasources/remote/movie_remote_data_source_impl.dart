@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:home/core/error/failures.dart';
 import 'package:home/data/datasources/remote/movie_remote_data_source.dart';
-import 'package:home/data/models/movies_response.dart';
-import 'package:home/di/api_service.dart';
+import 'package:home/data/datasources/remote/response/movies_response.dart';
+import 'package:home/data/datasources/remote/api/api_service.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: MovieRemoteDataSource)

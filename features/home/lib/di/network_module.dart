@@ -1,4 +1,4 @@
-import 'package:home/di/api_service.dart';
+import 'package:home/data/datasources/remote/api/api_service.dart';
 import 'package:home/di/header_interceptor.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';

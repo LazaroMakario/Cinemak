@@ -15,7 +15,7 @@ import 'package:home/data/datasources/remote/movie_remote_data_source.dart'
 import 'package:home/data/datasources/remote/movie_remote_data_source_impl.dart'
     as _i695;
 import 'package:home/data/repositories/movie_repository_impl.dart' as _i1012;
-import 'package:home/di/api_service.dart' as _i494;
+import 'package:home/data/datasources/remote/api/api_service.dart' as _i494;
 import 'package:home/di/network_module.dart' as _i857;
 import 'package:home/domain/repositories/movie_repository.dart' as _i293;
 import 'package:home/domain/usecases/get_most_popular_movies.dart' as _i895;
