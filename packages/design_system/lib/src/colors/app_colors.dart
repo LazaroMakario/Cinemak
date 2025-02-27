@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 /// Define los colores principales de la aplicación Cinemak
 class AppColors {
   // Colores primarios
-  static const Color primary =
-      Color.fromARGB(255, 62, 9, 128); // Azul oscuro principal
+  static const Color primary = Color(0xFF3E0980); // Azul oscuro principal
   static const Color primaryLight = Color(0xFF4057AB);
   static const Color primaryDark = Color(0xFF0A1A3F);
 
@@ -32,8 +31,9 @@ class AppColors {
 
   // Colores de gradientes
   static const List<Color> primaryGradient = [
-    Color(0xFF1E3264),
-    Color(0xFF4057AB),
+    Color(0xFF6110C3),
+    Color(0xFF300661),
+    Color(0xFF121212),
   ];
 
   static const List<Color> posterGradient = [

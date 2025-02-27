@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:home/domain/models/movie.dart';
 import 'package:home/presentation/home/cubit/home_cubit.dart';
+import 'package:design_system/design_system.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -27,51 +28,50 @@ class _HomeScreenState extends State<HomeScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF6A1B9A), // Morado más claro arriba
-              Color(0xFF300860), // Morado medio
-              Color(0xFF07000D), // Casi negro al final
-            ],
-            stops: [0.0, 0.5, 1.0],
+            colors: AppColors.primaryGradient,
           ),
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(AppSpacing.md),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Sección superior: Título y imagen de perfil
                 _buildTopSection(),
-                SizedBox(height: 20),
+                SizedBox(height: AppSpacing.md),
 
                 // Barra de búsqueda
                 _buildSearchBar(),
-                SizedBox(height: 30), // Espacio adicional antes de Cartelera
+                SizedBox(height: AppSpacing.lg),
 
-                // Listas de películas - Ejemplo con contenido "Películas" por ahora
+                // Listas de películas
                 Expanded(
                   child: BlocBuilder<HomeCubit, HomeState>(
                     builder: (context, state) {
                       return state.maybeWhen(
-                        initial: () => Center(child: Text('Iniciando...')),
-                        loading: () =>
-                            Center(child: CircularProgressIndicator()),
+                        initial: () => Center(
+                          child: Text(
+                            'Iniciando...',
+                            style: AppTypography.body1.copyWith(
+                              color: AppColors.textPrimary,
+                            ),
+                          ),
+                        ),
+                        loading: () => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
                         loaded: (upcomingMovies, topRatedMovies) {
                           return SingleChildScrollView(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                _buildMovieListTitle(
-                                  'Esta semana',
-                                ), // Título de ejemplo
-                                SizedBox(height: 10),
+                                _buildMovieListTitle('Esta semana'),
+                                SizedBox(height: AppSpacing.xs),
                                 _buildHorizontalMovieList(topRatedMovies),
-                                SizedBox(height: 20),
-                                _buildMovieListTitle(
-                                  'Más Populares',
-                                ), // "Más populares" en español
-                                SizedBox(height: 10),
+                                SizedBox(height: AppSpacing.md),
+                                _buildMovieListTitle('Más Populares'),
+                                SizedBox(height: AppSpacing.xs),
                                 _buildHorizontalMovieList(upcomingMovies),
                               ],
                             ),
@@ -80,13 +80,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         error: (message) => Center(
                           child: Text(
                             'Error: $message',
-                            style: TextStyle(color: Colors.white),
+                            style: AppTypography.body1.copyWith(
+                              color: AppColors.error,
+                            ),
                           ),
                         ),
                         orElse: () => Center(
                           child: Text(
                             'No hay datos disponibles',
-                            style: TextStyle(color: Colors.white),
+                            style: AppTypography.body1.copyWith(
+                              color: AppColors.textPrimary,
+                            ),
                           ),
                         ),
                       );
@@ -107,11 +111,9 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Text(
           '¿Qué quieres\nver hoy?',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            height: 1.1, // Ajustar altura de línea para coincidir con la imagen
+          style: AppTypography.headline2.copyWith(
+            color: AppColors.textPrimary,
+            height: 1.1,
           ),
         ),
         Container(
@@ -119,10 +121,13 @@ class _HomeScreenState extends State<HomeScreen> {
           height: 40,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(color: Colors.white, width: 1.5), // Borde blanco
-            image: DecorationImage(
-              image: NetworkImage(
-                  'https://randomuser.me/api/portraits/men/1.jpg'), // Imagen de perfil de ejemplo
+            border: Border.all(
+              color: AppColors.textPrimary,
+              width: 1.5,
+            ),
+            image: const DecorationImage(
+              image:
+                  NetworkImage('https://randomuser.me/api/portraits/men/1.jpg'),
               fit: BoxFit.cover,
             ),
           ),
@@ -132,52 +137,36 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildSearchBar() {
-    return Container(
-      decoration: BoxDecoration(
-        color:
-            Color(0xFF6A1B9A), // Fondo Morado Claro para la barra de búsqueda
-        borderRadius: BorderRadius.circular(25), // Esquinas redondeadas
-      ),
-      child: TextField(
-        style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-          hintText: 'Buscar',
-          hintStyle: TextStyle(color: Colors.white70),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.only(left: 20.0, right: 10.0),
-            child: Icon(Icons.search, color: Colors.white),
-          ),
-          prefixIconConstraints: BoxConstraints(
-              minWidth: 50), // Ajustar tamaño del icono de prefijo
-          border: InputBorder.none, // Eliminar borde predeterminado
-          contentPadding:
-              EdgeInsets.symmetric(vertical: 12.0), // Ajustar relleno vertical
-        ),
-      ),
+    return SearchBarInput(
+      hintText: 'Buscar',
+      onChanged: (value) {
+        // Implementar búsqueda
+      },
+      onSubmitted: (value) {
+        // Realizar búsqueda
+      },
     );
   }
 
   Widget _buildMovieListTitle(String title) {
     return Text(
       title,
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
+      style: AppTypography.subtitle1.copyWith(
+        color: AppColors.textPrimary,
       ),
     );
   }
 
   Widget _buildHorizontalMovieList(List<Movie> movies) {
     return SizedBox(
-      height: 200, // Ajustar altura según sea necesario
+      height: 210, // Ajustado a 210px para las nuevas tarjetas
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: movies.length,
         itemBuilder: (context, index) {
           final movie = movies[index];
           return Padding(
-            padding: const EdgeInsets.only(right: 8.0),
+            padding: EdgeInsets.only(right: AppSpacing.xs),
             child: _buildMoviePosterCard(movie),
           );
         },
@@ -196,44 +185,12 @@ class _HomeScreenState extends State<HomeScreen> {
       onTap: () {
         Modular.to.pushNamed('./details', arguments: movie);
       },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(
-                10), // Esquinas redondeadas para las imágenes de las películas
-            child: Image.network(
-              imageUrl,
-              width: 120, // Ancho de la imagen de la película
-              height: 180, // Alto de la imagen de la película
-              fit: BoxFit.cover,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Container(
-                  width: 120,
-                  height: 180,
-                  color: Colors.grey[800],
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                          : null,
-                    ),
-                  ),
-                );
-              },
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  width: 120,
-                  height: 180,
-                  color: Colors.grey[800],
-                  child: Icon(Icons.error, color: Colors.white),
-                );
-              },
-            ),
-          ),
-        ],
+      child: MovieCard(
+        posterUrl: imageUrl,
+        title: movie.title,
+        year:
+            movie.releaseDate != null ? movie.releaseDate.substring(0, 4) : '',
+        rating: movie.voteAverage.toDouble(),
       ),
     );
   }

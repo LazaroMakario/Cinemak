@@ -41,6 +41,10 @@ dependencies:
   network:
     path: ../../packages/network
 
+  # Design System
+  design_system:
+    path: ../../packages/design_system
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
