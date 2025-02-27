@@ -2,6 +2,7 @@ import 'package:cinemak/module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:home/di/injector.dart';
+import 'package:design_system/design_system.dart';
 
 void main() {
   configureDependencies();
@@ -18,12 +19,10 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Cinemak',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
-        ),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.dark, // Modo oscuro por defecto para una app de cine
+      debugShowCheckedModeBanner: false,
       routerConfig: Modular.routerConfig,
     );
   }
