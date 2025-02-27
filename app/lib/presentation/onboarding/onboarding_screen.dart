@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:design_system/design_system.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -11,7 +12,7 @@ class OnboardingScreen extends StatelessWidget {
         children: [
           // Background Image
           Image.asset(
-            'assets/dune_background.png', // Asegúrate de tener la imagen en assets y configurada en pubspec.yaml
+            'assets/dune_background.png',
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
@@ -22,123 +23,116 @@ class OnboardingScreen extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  Colors.black.withOpacity(
-                      1), // Ajusta la opacidad para que coincida con la imagen
-                ],
+                colors: AppColors.posterGradient,
               ),
             ),
           ),
           // Content on top of the image and gradient
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: AppSpacing.paddingLG,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment
-                    .end, // Alinea el contenido al final de la pantalla
-                crossAxisAlignment:
-                    CrossAxisAlignment.start, // Alinea el texto a la izquierda
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // THE MOVIE DB
+                  // App Logo Title
                   Row(
                     children: [
                       Text(
                         'CINEMAK ',
-                        style: TextStyle(
-                          color: Colors.white,
+                        style: AppTypography.subtitle1.copyWith(
+                          color: AppColors.textPrimary,
                           fontWeight: FontWeight.bold,
-                          fontSize:
-                              16.0, // Ajusta el tamaño de fuente si es necesario
                         ),
                       ),
                       Container(
                         width: 6.0,
                         height: 6.0,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
+                        decoration: const BoxDecoration(
+                          color: AppColors.textPrimary,
                           shape: BoxShape.circle,
                         ),
                       ),
                       Text(
-                        ' DB', // Parte extra para que coincida exactamente con la imagen
-                        style: TextStyle(
-                          color: Colors.white,
+                        ' DB',
+                        style: AppTypography.subtitle1.copyWith(
+                          color: AppColors.textPrimary,
                           fontWeight: FontWeight.bold,
-                          fontSize:
-                              16.0, // Ajusta el tamaño de fuente si es necesario
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(
-                      height:
-                          16.0), // Espacio entre el título y el texto principal
+                  AppSpacing.verticalSpacerMD,
                   // Texto principal
                   RichText(
                     text: TextSpan(
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 32.0,
+                      style: AppTypography.headline1.copyWith(
+                        color: AppColors.textPrimary,
                         height: 1.1,
                       ),
                       children: [
-                        TextSpan(text: 'Todo sobre '),
+                        TextSpan(
+                          text: 'Todo sobre ',
+                          style: AppTypography.headline1.copyWith(
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
                         TextSpan(
                           text: 'películas',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: AppTypography.headline1.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textPrimary,
+                          ),
                         ),
-                        TextSpan(text: ',\n'),
+                        const TextSpan(text: ',\n'),
                         TextSpan(
                           text: 'series',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: AppTypography.headline1.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textPrimary,
+                          ),
                         ),
-                        TextSpan(text: ', '),
+                        const TextSpan(text: ', '),
                         TextSpan(
                           text: 'animes',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: AppTypography.headline1.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textPrimary,
+                          ),
                         ),
-                        TextSpan(text: ' y\n'),
+                        TextSpan(
+                          text: ' y\n',
+                          style: AppTypography.headline1.copyWith(
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
                         TextSpan(
                           text: 'mucho más',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: AppTypography.headline1.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textPrimary,
+                          ),
                         ),
-                        TextSpan(text: '.'),
+                        const TextSpan(text: '.'),
                       ],
                     ),
                   ),
-                  SizedBox(
-                      height:
-                          8.0), // Espacio entre el texto principal y el secundario
+                  AppSpacing.verticalSpacerXS,
                   // Texto secundario
                   Text(
                     'Manténgase al tanto de las informaciones sobre películas, series, animes y mucho más.',
-                    style: TextStyle(
-                      color: Colors
-                          .white70, // Color blanco ligeramente transparente
-                      fontSize: 14.0, // Tamaño de fuente más pequeño
+                    style: AppTypography.body2.copyWith(
+                      color: AppColors.textSecondary,
                     ),
                   ),
-                  SizedBox(height: 24.0), // Espacio antes del botón
-                  // Botón "Acessar"
-                  SizedBox(
-                    width: double.infinity, // Ancho completo del botón
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Modular.to.pushNamed('/home');
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(
-                            0xFF9333EA), // Color morado del botón (puedes ajustarlo con un selector de color)
-                        padding: EdgeInsets.symmetric(vertical: 16.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(30.0), // Bordes redondeados
-                        ),
-                      ),
-                      child: Text('Continuar',
-                          style: TextStyle(color: Colors.white)),
-                    ),
+                  AppSpacing.verticalSpacerXL,
+                  // Botón "Continuar"
+                  PrimaryButton(
+                    text: 'Continuar',
+                    isFullWidth: true,
+                    onPressed: () {
+                      Modular.to.pushNamed('/home');
+                    },
                   ),
                 ],
               ),
