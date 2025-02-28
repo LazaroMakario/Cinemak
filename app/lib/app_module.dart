@@ -4,11 +4,6 @@ import 'package:home/module.dart';
 
 class AppModule extends Module {
   @override
-  List<Module> get imports => [
-        HomeModule(),
-      ];
-
-  @override
   void routes(r) {
     r.child('/', child: (context) => OnboardingScreen());
     r.module('/home', module: HomeModule());

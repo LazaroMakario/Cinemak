@@ -6,9 +6,13 @@ import 'package:home/presentation/home/cubit/home_cubit.dart';
 import 'package:home/presentation/home/view/home_screen.dart';
 
 class HomeModule extends Module {
+  HomeModule() {
+    configureHomeDependencies();
+  }
+
   @override
   void binds(i) {
-    i.addSingleton<HomeCubit>(() => getIt<HomeCubit>());
+    i.addSingleton<HomeCubit>(() => getHomeIt<HomeCubit>());
   }
 
   @override
