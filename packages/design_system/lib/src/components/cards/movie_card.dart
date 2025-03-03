@@ -12,13 +12,13 @@ class MovieCard extends StatelessWidget {
   final VoidCallback? onTap;
 
   const MovieCard({
-    Key? key,
+    super.key,
     required this.title,
     this.posterUrl,
     this.year,
     this.rating,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

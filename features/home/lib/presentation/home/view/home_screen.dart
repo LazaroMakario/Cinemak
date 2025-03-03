@@ -14,6 +14,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
+  final myBloc = Modular.get<HomeCubit>();
+
   // Los cubits ya están disponibles a través de Modular
   // No necesitas obtenerlos explícitamente con BlocProvider
   //late final HomeCubit _homeCubit = Modular.get<HomeCubit>();
@@ -30,6 +32,13 @@ class HomeScreenState extends State<HomeScreen> {
     _homeCubit.close();
     super.dispose();
   } */
+
+  @override
+  void initState() {
+    super.initState();
+
+    //myBloc.getMovies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +68,7 @@ class HomeScreenState extends State<HomeScreen> {
                 // Listas de películas
                 Expanded(
                   child: BlocBuilder<HomeCubit, HomeState>(
+                    bloc: myBloc..getMovies(),
                     builder: (context, state) {
                       return state.maybeWhen(
                         initial: () => Center(

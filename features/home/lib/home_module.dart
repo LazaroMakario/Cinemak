@@ -12,19 +12,19 @@ class HomeModule extends Module {
 
   @override
   void binds(i) {
-    //i.addSingleton<HomeCubit>(() => getHomeIt<HomeCubit>());
+    i.addSingleton<HomeCubit>(() => getHomeIt<HomeCubit>());
   }
 
   @override
   void routes(r) {
-    r.child(
+    /* r.child(
       '/',
       child: (context) => BlocProvider(
         create: (_) => getHomeIt<HomeCubit>()..getMovies(),
         child: HomeScreen(),
       ),
-    );
-    //r.child('/', child: (context) => HomeScreen());
+    ); */
+    r.child('/', child: (context) => HomeScreen());
     r.child(
       '/details',
       child: (context) => MovieDetailsScreen(
