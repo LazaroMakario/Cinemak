@@ -1,24 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:home/di/injector.dart';
 import 'package:home/domain/models/movie.dart';
-import 'package:home/presentation/home/cubit/home_cubit.dart';
 import 'package:design_system/design_system.dart';
+import 'package:home/presentation/home/cubit/home_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
+  // Los cubits ya están disponibles a través de Modular
+  // No necesitas obtenerlos explícitamente con BlocProvider
+  //late final HomeCubit _homeCubit = Modular.get<HomeCubit>();
+  /* late final HomeCubit _homeCubit = getHomeIt<HomeCubit>();
+
   @override
   void initState() {
     super.initState();
-    // Cargar películas al iniciar la pantalla
-    //context.read<MoviesCubit>().getMovies();
+    _homeCubit.getMovies();
   }
+
+  @override
+  void dispose() {
+    _homeCubit.close();
+    super.dispose();
+  } */
 
   @override
   Widget build(BuildContext context) {
