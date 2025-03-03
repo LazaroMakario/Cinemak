@@ -14,22 +14,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  // Los cubits ya están disponibles a través de Modular
-  // No necesitas obtenerlos explícitamente con BlocProvider
-  //late final HomeCubit _homeCubit = Modular.get<HomeCubit>();
-  /* late final HomeCubit _homeCubit = getHomeIt<HomeCubit>();
+  // El cubit ahora se proporciona a través de BlocProvider en el HomeModuleWrapper
+
+  final HomeCubit _homeCubit = getHomeIt<HomeCubit>();
 
   @override
   void initState() {
     super.initState();
     _homeCubit.getMovies();
   }
-
-  @override
-  void dispose() {
-    _homeCubit.close();
-    super.dispose();
-  } */
 
   @override
   Widget build(BuildContext context) {
